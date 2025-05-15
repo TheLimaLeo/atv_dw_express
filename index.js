@@ -5,6 +5,7 @@ const app = express();
 
 import ProdutosController from "./controllers/produtosController.js";
 import CadastroController from "./controllers/cadastroController.js";
+import connection from "./config/sequelize-config.js";
 
 app.set("view engine", "ejs");
 
@@ -21,6 +22,22 @@ app.get("/", (req, res) => {
 app.use((req, res) => {
   res.status(404).render("404");
 });
+
+connection.authenticate().then(() => {
+  console.log("Conexão com o banco de dados realizada com sucesso!");
+}).catch((error) => {
+  console.log(error)
+});
+
+
+
+// Criando o banco de dados se ele não existir
+connection.query(`CREATE DATABASE IF NOT EXISTS 
+  loja;`).then(() => {
+  console.log("O banco de dados está criado.")
+  }).catch((error) => {
+  console.log(error)
+  })
 
 app.listen(5000, (error) => {
   if (error) {
