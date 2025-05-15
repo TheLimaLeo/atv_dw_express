@@ -4,16 +4,22 @@ import express from "express";
 const app = express(); 
 
 import ProdutosController from "./controllers/produtosController.js";
-
+import CadastroController from "./controllers/cadastroController.js";
 
 app.set("view engine", "ejs");
 
 app.use("/", ProdutosController);
+app.use("/", CadastroController);
 
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+// 404
+app.use((req, res) => {
+  res.status(404).render("404");
 });
 
 app.listen(5000, (error) => {
@@ -23,4 +29,5 @@ app.listen(5000, (error) => {
     console.log("Servidor iniciado com sucesso!");
     console.log("Acesse http://localhost:5000");
   }
+
 });
