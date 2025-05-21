@@ -1,4 +1,3 @@
-
 import express from "express";
 
 const app = express(); 
@@ -13,6 +12,8 @@ app.use("/", ProdutosController);
 app.use("/", CadastroController);
 
 app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.render("index");

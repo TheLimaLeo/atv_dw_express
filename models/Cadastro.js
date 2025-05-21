@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import connection from 'config/sequelize-config.js';
+import connection from '../config/sequelize-config.js';
 
 const Cadastro = connection.define('cadastro', {
   nome: {
@@ -20,5 +20,5 @@ const Cadastro = connection.define('cadastro', {
   }
 });
 
-Clientes.sync({ force: false })
-export default Cadastro
+Cadastro.sync({ force: false });
+export default Cadastro;

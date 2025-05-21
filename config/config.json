@@ -1,0 +1,10 @@
+{
+  "development": {
+    "dialect": "mysql",
+    "host": "localhost",
+    "username": "root",
+    "password": "",
+    "database": "loja",
+    "timezone": "-03:00"
+  }
+}
